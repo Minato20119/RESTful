@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.minato.springboot.entity.Airlines;
@@ -46,44 +47,35 @@ public class AirlinesController {
 	}
 
 	@PostMapping("airlines")
-	public ResponseEntity<Void> addAirlines(@RequestBody Airlines airlines, UriComponentsBuilder builder) {
+	public ResponseEntity<?> addAirlines(@RequestParam(value = "code") int code,
+			@RequestParam(value = "name") String name, @RequestParam(value = "otherDetails") String otherDetails,
+			Airlines airlines, UriComponentsBuilder builder) {
+
 		boolean flag = airlinesService.addAirlines(airlines);
 		if (flag == false) {
 			return new ResponseEntity<Void>(HttpStatus.CONFLICT);
 		}
-		
+
 		HttpHeaders headers = new HttpHeaders();
 		headers.setLocation(builder.path("/airlines/{id}").buildAndExpand(airlines.getCode()).toUri());
 		return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
 	}
-	
+
 	@PutMapping("airlines")
 	public ResponseEntity<Airlines> updateAirlines(@RequestBody Airlines airlines) {
 		airlinesService.updateAirlines(airlines);
 		return new ResponseEntity<Airlines>(airlines, HttpStatus.OK);
 	}
-	
+
 	@DeleteMapping("airlines/{id}")
 	public ResponseEntity<Void> deleteAirlines(@PathVariable("id") Integer id) {
 		airlinesService.deleteAirlines(id);
 		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 	}
-	
+
 	@DeleteMapping("airlines/all")
 	public ResponseEntity<Void> deleteAllAirlines() {
 		airlinesService.deleteAllAirlines();
 		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-

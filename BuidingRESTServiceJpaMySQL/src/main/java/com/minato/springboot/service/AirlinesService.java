@@ -21,32 +21,36 @@ public class AirlinesService {
 	@Autowired
 	private IAirlinesDAO airlinesDAO;
 	
+	@Autowired
+	private FlightSchedulesService flightSchedulesService;
+
 	public Airlines getAirlinesById(int id) {
 		Airlines airlines = airlinesDAO.getAirlinesById(id);
 		return airlines;
 	}
-	
+
 	public List<Airlines> getAllAirlines() {
 		return airlinesDAO.getAllAirlines();
 	}
-	
+
 	public synchronized boolean addAirlines(Airlines airlines) {
 		if (airlinesDAO.airlinesExists(airlines.getName())) {
 			return false;
-		} else {
-			airlinesDAO.addAirlines(airlines);
-			return true;
 		}
+		airlinesDAO.addAirlines(airlines);
+		flightSchedulesService.addFlightSchedules(airlines);
+		return true;
+
 	}
-	
+
 	public void updateAirlines(Airlines airlines) {
 		airlinesDAO.updateAirlines(airlines);
 	}
-	
-	public void deleteAirlines(int id ) {
+
+	public void deleteAirlines(int id) {
 		airlinesDAO.deleteAirlines(id);
 	}
-	
+
 	public void deleteAllAirlines() {
 		airlinesDAO.deleteAllAirlines();
 	}
