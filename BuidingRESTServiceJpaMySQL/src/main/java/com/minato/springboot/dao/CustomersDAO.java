@@ -25,48 +25,24 @@ public class CustomersDAO implements ICustomersDAO {
 	@Autowired
 	private CustomersJPARepository customersJPARepository;
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.minato.springboot.interfaceDao.ICustomersDAO#getAllCustomers()
-	 */
 	@Override
 	public List<Customers> getAllCustomers() {
 		// TODO Auto-generated method stub
 		return customersJPARepository.findAll();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.minato.springboot.interfaceDao.ICustomersDAO#getCustomersById(long)
-	 */
 	@Override
 	public Customers getCustomersById(int id) {
 		// TODO Auto-generated method stub
 		return customersJPARepository.findOne(id);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.minato.springboot.interfaceDao.ICustomersDAO#addCustomers(com.minato.
-	 * springboot.entity.Customers)
-	 */
 	@Override
 	public void addCustomers(Customers customers) {
 		// TODO Auto-generated method stub
 		customersJPARepository.save(customers);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.minato.springboot.interfaceDao.ICustomersDAO#updateCustomers(com.minato.
-	 * springboot.entity.Customers)
-	 */
 	@Override
 	public void updateCustomers(Customers customers) {
 		// TODO Auto-generated method stub
@@ -76,35 +52,18 @@ public class CustomersDAO implements ICustomersDAO {
 		customersJPARepository.flush();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.minato.springboot.interfaceDao.ICustomersDAO#deleteCustomers(long)
-	 */
 	@Override
 	public void deleteCustomers(int id) {
 		// TODO Auto-generated method stub
 		customersJPARepository.delete(id);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.minato.springboot.interfaceDao.ICustomersDAO#customersExists(java.lang.
-	 * String)
-	 */
 	@Override
 	public boolean customersExists(String name) {
 		// TODO Auto-generated method stub
 		return customersJPARepository.findByCustomerName(name) != null ? true : false;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.minato.springboot.interfaceDao.ICustomersDAO#deleteAllCustomers()
-	 */
 	@Override
 	public void deleteAllCustomers() {
 		// TODO Auto-generated method stub

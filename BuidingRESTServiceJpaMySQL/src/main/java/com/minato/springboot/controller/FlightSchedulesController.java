@@ -3,7 +3,6 @@
  */
 package com.minato.springboot.controller;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.minato.springboot.entity.FlightSchedules;
@@ -48,17 +45,7 @@ public class FlightSchedulesController {
 	}
 
 	@PostMapping("flightschedules")
-	public ResponseEntity<?> addFlightSchedules(@RequestParam(value = "id") int id,
-			@RequestParam(value = "flightNumber") int flightNumber,
-			@RequestParam(value = "departureTime") Date departureTime,
-			@RequestParam(value = "arrivalTime") Date arrivalTime,
-			@RequestParam(value = "otherDetails") String otherDetails, FlightSchedules flightSchedules,
-			UriComponentsBuilder builder) {
-
-		// boolean flag = flightSchedulesService.addFlightSchedules(flightSchedules);
-		// if (flag == false) {
-		// return new ResponseEntity<Void>(HttpStatus.CONFLICT);
-		// }
+	public ResponseEntity<?> addFlightSchedules(FlightSchedules flightSchedules, UriComponentsBuilder builder) {
 
 		HttpHeaders headers = new HttpHeaders();
 		headers.setLocation(builder.path("/airlines/{id}").buildAndExpand(flightSchedules.getId()).toUri());
@@ -66,7 +53,7 @@ public class FlightSchedulesController {
 	}
 
 	@PutMapping("flightschedules")
-	public ResponseEntity<FlightSchedules> updateFlightSchedules(@RequestBody FlightSchedules flightSchedules) {
+	public ResponseEntity<FlightSchedules> updateFlightSchedules(FlightSchedules flightSchedules) {
 		flightSchedulesService.updateFlightSchedules(flightSchedules);
 		return new ResponseEntity<FlightSchedules>(flightSchedules, HttpStatus.OK);
 	}

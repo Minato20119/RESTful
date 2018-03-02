@@ -15,9 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.minato.springboot.entity.Airlines;
@@ -47,11 +45,15 @@ public class AirlinesController {
 	}
 
 	@PostMapping("airlines")
-	public ResponseEntity<?> addAirlines(@RequestParam(value = "code") int code,
-			@RequestParam(value = "name") String name, @RequestParam(value = "otherDetails") String otherDetails,
-			Airlines airlines, UriComponentsBuilder builder) {
+	public ResponseEntity<?> addAirlines(Airlines airlines, UriComponentsBuilder builder) {
+
+		System.out.println("Before Code: " + airlines.getCode());
+		System.out.println("Name: " + airlines.getName());
+		System.out.println("Details: " + airlines.getOtherDetails());
 
 		boolean flag = airlinesService.addAirlines(airlines);
+		
+		System.out.println("After Code: " + airlines.getCode());
 		if (flag == false) {
 			return new ResponseEntity<Void>(HttpStatus.CONFLICT);
 		}
@@ -62,7 +64,7 @@ public class AirlinesController {
 	}
 
 	@PutMapping("airlines")
-	public ResponseEntity<Airlines> updateAirlines(@RequestBody Airlines airlines) {
+	public ResponseEntity<Airlines> updateAirlines(Airlines airlines) {
 		airlinesService.updateAirlines(airlines);
 		return new ResponseEntity<Airlines>(airlines, HttpStatus.OK);
 	}

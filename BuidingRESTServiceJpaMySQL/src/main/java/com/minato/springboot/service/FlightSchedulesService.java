@@ -21,42 +21,45 @@ import com.minato.springboot.interfaceDao.IFlightSchedulesDAO;
  */
 @Service
 public class FlightSchedulesService {
-	
+
 	private final AtomicLong counter = new AtomicLong();
 
 	@Autowired
 	private IFlightSchedulesDAO flightSchedulesDAO;
-	
+
 	@Autowired
 	private IAirlinesDAO airlinesDAO;
-	
+
 	public FlightSchedules getFlightSchedulesById(int id) {
 		FlightSchedules flightSchedules = flightSchedulesDAO.getFlightSchedulesById(id);
 		return flightSchedules;
 	}
-	
+
 	public List<FlightSchedules> getAllFlightSchedules() {
 		return flightSchedulesDAO.getAllFlightSchedules();
 	}
-	
+
 	public void addFlightSchedules(Airlines airlines) {
-		FlightSchedules f1 = new FlightSchedules((int)(counter.getAndIncrement()), new Date(), new Date(), "This is other details flight " + counter);
-		FlightSchedules f2 = new FlightSchedules((int)(counter.getAndIncrement()), new Date(), new Date(), "This is other details flight " + counter);
+		FlightSchedules f1 = new FlightSchedules((int) (counter.getAndIncrement()), new Date(), new Date(),
+				"This is other details flight " + counter);
+		FlightSchedules f2 = new FlightSchedules((int) (counter.getAndIncrement()), new Date(), new Date(),
+				"This is other details flight " + counter);
+		
 		f1.setAirlines(airlines);
 		f2.setAirlines(airlines);
 		airlines.getFlightSchedules().add(f1);
 		airlines.getFlightSchedules().add(f2);
 		airlinesDAO.addAirlines(airlines);
 	}
-	
+
 	public void updateFlightSchedules(FlightSchedules customers) {
 		flightSchedulesDAO.updateFlightSchedules(customers);
 	}
-	
-	public void deleteFlightSchedules(int id ) {
+
+	public void deleteFlightSchedules(int id) {
 		flightSchedulesDAO.deleteFlightSchedules(id);
 	}
-	
+
 	public void deleteAllFlightSchedules() {
 		flightSchedulesDAO.deleteAllFlightSchedules();
 	}

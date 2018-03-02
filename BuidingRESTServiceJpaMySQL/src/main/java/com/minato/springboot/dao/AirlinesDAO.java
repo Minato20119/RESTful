@@ -67,7 +67,6 @@ public class AirlinesDAO implements IAirlinesDAO {
 	@Override
 	public boolean airlinesExists(String name) {
 		// TODO Auto-generated method stub
-		airlinesJPARepository.findByName(name);
 		return airlinesJPARepository.findByName(name) != null ? true : false;
 	}
 
