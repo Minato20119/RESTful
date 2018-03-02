@@ -44,7 +44,7 @@ public class RefPaymentMethodsService {
 	}
 
 	public void deleteRefPaymentMethodsById(int id) {
-		refPaymentMethodsDAO.deleteRefPaymentMethods(id);
+		refPaymentMethodsDAO.deleteRefPaymentMethodsById(id);
 	}
 
 	public void deleteAllRefPaymentMethods() {

@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.minato.springboot.entity.Reservations;
 
 /**
@@ -28,6 +29,7 @@ public class RefPaymentMethods {
 	@Column(name = "Payment_Method_Description")
 	private String paymentMethodDescription; // eg AMEX = American Express, MC = Master Card
 
+	@JsonIgnore
 	private Set<Reservations> reservations = new HashSet<>();
 
 	@OneToMany(mappedBy = "refPaymentMethods", cascade = CascadeType.ALL)

@@ -15,6 +15,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * @author Minato
  *
@@ -50,6 +52,7 @@ public class FlightSchedules {
 		this.airlines = airlines;
 	}
 
+	@JsonIgnore
 	private Set<Reservations> reservations = new HashSet<>();
 
 	@OneToMany(mappedBy = "flightSchedules", cascade = CascadeType.ALL)

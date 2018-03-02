@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * @author Minato
  *
@@ -23,6 +25,7 @@ public class Airlines {
 	@Column(name = "Airline_Code")
 	private int code;
 
+	@JsonIgnore
 	private Set<FlightSchedules> flightSchedules = new HashSet<>();
 
 	@OneToMany(mappedBy = "airlines", cascade = CascadeType.ALL)

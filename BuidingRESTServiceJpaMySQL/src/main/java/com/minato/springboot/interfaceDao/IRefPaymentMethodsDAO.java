@@ -21,7 +21,7 @@ public interface IRefPaymentMethodsDAO {
 
 	void updateRefPaymentMethods(RefPaymentMethods refPaymentMethods);
 
-	void deleteRefPaymentMethods(int id);
+	void deleteRefPaymentMethodsById(int id);
 
 	void deleteAllRefPaymentMethods();
 

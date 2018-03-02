@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * @author Minato
  *
@@ -29,6 +31,7 @@ public class Customers {
 	@Column(name = "Other_Details")
 	private String otherDetails;
 
+	@JsonIgnore
 	private Set<Reservations> reservations = new HashSet<>();
 
 	public Customers() {

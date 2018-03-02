@@ -52,7 +52,7 @@ public class RefPaymentMethodDAO implements IRefPaymentMethodsDAO {
 	}
 
 	@Override
-	public void deleteRefPaymentMethods(int id) {
+	public void deleteRefPaymentMethodsById(int id) {
 		// TODO Auto-generated method stub
 		refPaymentMethodsJPARepository.delete(id);
 	}
