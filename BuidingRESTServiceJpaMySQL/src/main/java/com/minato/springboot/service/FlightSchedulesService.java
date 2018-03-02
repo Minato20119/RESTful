@@ -49,7 +49,12 @@ public class FlightSchedulesService {
 		f2.setAirlines(airlines);
 		airlines.getFlightSchedules().add(f1);
 		airlines.getFlightSchedules().add(f2);
+		
 		airlinesDAO.addAirlines(airlines);
+	}
+	
+	public void addFlightSchedulesByIt(FlightSchedules flightSchedules) {
+		flightSchedulesDAO.addFlightSchedules(flightSchedules);
 	}
 
 	public void updateFlightSchedules(FlightSchedules customers) {

@@ -47,13 +47,8 @@ public class AirlinesController {
 	@PostMapping("airlines")
 	public ResponseEntity<?> addAirlines(Airlines airlines, UriComponentsBuilder builder) {
 
-		System.out.println("Before Code: " + airlines.getCode());
-		System.out.println("Name: " + airlines.getName());
-		System.out.println("Details: " + airlines.getOtherDetails());
-
 		boolean flag = airlinesService.addAirlines(airlines);
 		
-		System.out.println("After Code: " + airlines.getCode());
 		if (flag == false) {
 			return new ResponseEntity<Void>(HttpStatus.CONFLICT);
 		}
