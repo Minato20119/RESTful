@@ -4,6 +4,7 @@
 package com.minato.springboot.service;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,8 @@ public class ReservationsService {
 	@Autowired
 	private IReservationsDAO reservationsDAO;
 
+	private static Set<Object> listObject;
+
 	public List<Reservations> getAllReservations() {
 		return reservationsDAO.getAllReservations();
 	}
@@ -32,6 +35,11 @@ public class ReservationsService {
 
 	public void addReservations(Reservations reservations) {
 		reservationsDAO.addReservations(reservations);
+	}
+
+	public void addReservationsPrepare(Object object) {
+		if (object != null)
+			listObject.add(object);
 	}
 
 	public synchronized boolean updateReservations(Reservations reservations) {

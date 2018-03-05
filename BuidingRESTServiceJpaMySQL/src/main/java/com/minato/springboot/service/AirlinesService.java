@@ -21,9 +21,6 @@ public class AirlinesService {
 	@Autowired
 	private IAirlinesDAO airlinesDAO;
 
-	@Autowired
-	private FlightSchedulesService flightSchedulesService;
-
 	public Airlines getAirlinesById(int id) {
 		Airlines airlines = airlinesDAO.getAirlinesById(id);
 		return airlines;
@@ -38,10 +35,7 @@ public class AirlinesService {
 			return false;
 		}
 		airlinesDAO.addAirlines(airlines);
-		
-		flightSchedulesService.addFlightSchedules(airlines);
 		return true;
-
 	}
 
 	public void updateAirlines(Airlines airlines) {

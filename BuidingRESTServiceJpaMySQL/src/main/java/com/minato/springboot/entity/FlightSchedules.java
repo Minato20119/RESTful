@@ -1,5 +1,7 @@
 package com.minato.springboot.entity;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -42,6 +44,8 @@ public class FlightSchedules {
 
 	private Airlines airlines;
 
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy MM dd HH:mm:ss");
+
 	@ManyToOne
 	@JoinColumn(name = "Airline_Code")
 	public Airlines getAirlines() {
@@ -67,11 +71,14 @@ public class FlightSchedules {
 	public FlightSchedules() {
 	}
 
-	public FlightSchedules(int flightNumber, Date departureTime, Date arrivalTime, String otherDetails) {
+	public FlightSchedules(int flightNumber, String departureTime, String arrivalTime, String otherDetails,
+			Airlines airlines) throws ParseException {
+
 		this.flightNumber = flightNumber;
-		this.departureTime = departureTime;
-		this.arrivalTime = arrivalTime;
+		this.departureTime = sdf.parse(departureTime);
+		this.arrivalTime = sdf.parse(arrivalTime);
 		this.otherDetails = otherDetails;
+		this.airlines = airlines;
 	}
 
 	@Id
