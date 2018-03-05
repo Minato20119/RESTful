@@ -1,5 +1,7 @@
 package com.minato.springboot.entity;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -51,16 +53,25 @@ public class Reservations {
 
 	private RefReservationStatus refReservationStatus;
 
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy MM dd HH:mm:ss");
+
 	public Reservations() {
 	}
 
-	public Reservations(String customerName, Date dateReservationMade, Date dateOfFlight, int eTicketNumber,
-			String otherDetails) {
+	public Reservations(String customerName, String dateReservationMade, String dateOfFlight, int eTicketNumber,
+			String otherDetails, Customers customers, FlightSchedules flightSchedules, RefClasses refClasses,
+			RefPaymentMethods refPaymentMethods, RefReservationStatus refReservationStatus) throws ParseException {
+
 		this.customerName = customerName;
-		this.dateReservationMade = dateReservationMade;
-		this.dateOfFlight = dateOfFlight;
+		this.dateReservationMade = sdf.parse(dateReservationMade);
+		this.dateOfFlight = sdf.parse(dateOfFlight);
 		this.eTicketNumber = eTicketNumber;
 		this.otherDetails = otherDetails;
+		this.customers = customers;
+		this.refClasses = refClasses;
+		this.flightSchedules = flightSchedules;
+		this.refPaymentMethods = refPaymentMethods;
+		this.refReservationStatus = refReservationStatus;
 	}
 
 	@Id
