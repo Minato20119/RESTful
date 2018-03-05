@@ -15,4 +15,5 @@ import com.minato.springboot.entityRef.RefPaymentMethods;
 @Repository
 public interface RefPaymentMethodsJPARepository extends JpaRepository<RefPaymentMethods, Integer>{
 
+	RefPaymentMethods findByPaymentMethodDescription(String name);
 }

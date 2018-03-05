@@ -15,9 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.minato.springboot.entity.Customers;
@@ -47,13 +45,8 @@ public class CustomersController {
 	}
 
 	@PostMapping("customers")
-	public ResponseEntity<?> addCustomers(@RequestParam(value = "id") int id,
-			@RequestParam(value = "customerName") String customerName,
-			@RequestParam(value = "otherDetails") String otherDetails, Customers customers,
-			UriComponentsBuilder builder) {
-		customers.setId(id);
-		customers.setCustomerName(customerName);
-		customers.setOtherDetails(otherDetails);
+	public ResponseEntity<?> addCustomers(Customers customers, UriComponentsBuilder builder) {
+
 		boolean flag = customerService.addCustomers(customers);
 		if (flag == false) {
 			return new ResponseEntity<Void>(HttpStatus.CONFLICT);
@@ -65,7 +58,7 @@ public class CustomersController {
 	}
 
 	@PutMapping("customers")
-	public ResponseEntity<Customers> updateCustomers(@RequestBody Customers customers) {
+	public ResponseEntity<Customers> updateCustomers(Customers customers) {
 		customerService.updateCustomers(customers);
 		return new ResponseEntity<Customers>(customers, HttpStatus.OK);
 	}

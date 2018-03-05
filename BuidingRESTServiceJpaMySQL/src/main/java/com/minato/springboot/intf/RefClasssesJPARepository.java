@@ -15,4 +15,5 @@ import com.minato.springboot.entityRef.RefClasses;
 @Repository
 public interface RefClasssesJPARepository extends JpaRepository<RefClasses, Integer>{
 
+	RefClasses findByClassNumberDescription(String name);
 }

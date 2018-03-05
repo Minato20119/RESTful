@@ -14,11 +14,17 @@ import com.minato.springboot.entity.Airlines;
 public interface IAirlinesDAO {
 
 	List<Airlines> getAllAirlines();
+
 	Airlines getAirlinesById(int id);
+
 	void addAirlines(Airlines airlines);
+
 	void updateAirlines(Airlines airlines);
+
 	void deleteAirlines(int id);
+
 	void deleteAllAirlines();
+
 	boolean airlinesExists(String name);
-	
+
 }

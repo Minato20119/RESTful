@@ -20,7 +20,7 @@ public class AirlinesService {
 
 	@Autowired
 	private IAirlinesDAO airlinesDAO;
-	
+
 	@Autowired
 	private FlightSchedulesService flightSchedulesService;
 
@@ -38,6 +38,7 @@ public class AirlinesService {
 			return false;
 		}
 		airlinesDAO.addAirlines(airlines);
+		
 		flightSchedulesService.addFlightSchedules(airlines);
 		return true;
 

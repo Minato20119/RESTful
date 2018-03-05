@@ -67,7 +67,7 @@ public class FlightSchedulesDAO implements IFlightSchedulesDAO {
 	}
 
 	@Override
-	public boolean customersExists() {
+	public boolean flightSchedulesExists() {
 		// TODO Auto-generated method stub
 		return flightSchedulesJPARepository.count() > 0 ? true : false;
 	}

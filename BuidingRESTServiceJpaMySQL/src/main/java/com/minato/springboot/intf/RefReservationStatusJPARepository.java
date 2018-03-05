@@ -15,4 +15,5 @@ import com.minato.springboot.entityRef.RefReservationStatus;
 @Repository
 public interface RefReservationStatusJPARepository extends JpaRepository<RefReservationStatus, Integer>{
 
+	RefReservationStatus findByReservatrionStatusDesciption(String name);
 }

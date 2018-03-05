@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.minato.springboot.entity.Reservations;
 
 /**
@@ -28,6 +29,7 @@ public class RefReservationStatus {
 	@Column(name = "Reservatrion_Status_Description")
 	private String reservatrionStatusDesciption; // eg Boarding Pass Printed.
 
+	@JsonIgnore
 	private Set<Reservations> reservations = new HashSet<>();
 
 	@OneToMany(mappedBy = "refReservationStatus", cascade = CascadeType.ALL)

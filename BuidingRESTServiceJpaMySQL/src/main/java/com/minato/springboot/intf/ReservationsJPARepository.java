@@ -13,6 +13,7 @@ import com.minato.springboot.entity.Reservations;
  *
  */
 @Repository
-public interface ReservationsJPARepository extends JpaRepository<Reservations, Integer>{
+public interface ReservationsJPARepository extends JpaRepository<Reservations, Integer> {
 
+	Reservations findByCustomerName(String name);
 }
